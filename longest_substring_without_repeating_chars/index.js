@@ -1,22 +1,15 @@
 function findLongestSubstrinWithoutRepeqtingChars(s) {
-  let maxSubstring = ""
+  let maxLength = 0
   let currentCharsMap = new Map()
-  let currentSubstring = ""
   for (let i = 0; i < s.length; i++) {
     if (currentCharsMap.has(s[i])) {
-      if (currentSubstring.length > maxSubstring.length) {
-        maxSubstring = currentSubstring
-      }
-      currentSubstring = ""
+      maxLength = Math.max(currentCharsMap.size, maxLength)
       currentCharsMap = new Map()
     }
-    currentSubstring += s[i]
     currentCharsMap.set(s[i], i)
   }
-  if (currentSubstring.length > maxSubstring.length) {
-    maxSubstring = currentSubstring
-  }
-  return maxSubstring.length
+  maxLength = Math.max(currentCharsMap.size, maxLength)
+  return maxLength
 }
 
 module.exports = findLongestSubstrinWithoutRepeqtingChars
