@@ -1,0 +1,23 @@
+{
+  "name": "datastructure_algorithm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thomas <tzhang920314@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^15.1.0",
+    "rimraf": "^5.0.7"
+  },
+  "scripts": {
+    "test": "npm-run-all --aggregate-output cov:clean -p cov:unit cov:integration -s cov:summary-preset cov:report",
+    "test:integration": "npm-run-all cov:clean cov:integration",
+    "test:unit": "npm-run-all cov:clean cov:unit",
+    "cov:clean": "rimraf .nyc_output && rimraf coverage",
+    "cov:unit": "jest --forceExit --colors -c jest.config.unit.js",
+    "cov:integration": "jest -runInBand --forceExit --colors -c jest.config.integration.js",
+    "cov:summary-preset": "mkdir .nyc_output && cp coverage/unit/coverage-final.json .nyc_output/unit.json && cp coverage/integration/coverage-final.json .nyc_output/integration.json",
+    "cov:report": "nyc report --reporter html --reporter lcov --report-dir ./coverage/summary"
+  }
+}
