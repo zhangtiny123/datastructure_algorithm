@@ -4,7 +4,7 @@ function findLongestSubstrinWithoutRepeqtingChars(s) {
   for (let i = 0; i < s.length; i++) {
     if (currentCharsMap.has(s[i])) {
       maxLength = Math.max(currentCharsMap.size, maxLength)
-      currentCharsMap = new Map()
+      currentCharsMap.clear()
     }
     currentCharsMap.set(s[i], i)
   }
