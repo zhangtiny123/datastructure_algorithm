@@ -1,12 +1,14 @@
-// not efficient!
 function mergeTwoSortedLists(l1, l2) {
   let mergedList = []
-  while (l1.length > 0 || l2.length > 0) {
-    if (l1[0] <= l2[0]) {
+  let len1 = l1.length
+  let len2 = l2.length
+  while (len1 > 0 || len2 > 0) {
+    if (!l2[0] || l1[0] <= l2[0]) {
       mergedList.push(l1.shift())
+      len1--
     } else {
       mergedList.push(l2.shift())
-      standing2 = undefined
+      len2--
     }
   }
 

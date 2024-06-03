@@ -20,7 +20,7 @@ function listToArray(list) {
   return array;
 }
 
-describe('mergeTwoSortedLists', () => {
+describe('mergeTwoLists', () => {
   it('should merge two sorted lists', () => {
     const l1 = arrayToList([1, 2, 4]);
     const l2 = arrayToList([1, 3, 4]);
@@ -74,5 +74,60 @@ describe('mergeTwoSortedLists', () => {
     const result = mergeTwoLists(l1, l2);
     const expectedArray = Array.from({ length: 200000 }, (_, i) => i);
     expect(listToArray(result)).toEqual(expectedArray);
+  });
+});
+
+describe('mergeTwoSortedLists', () => {
+  it('should merge two sorted lists', () => {
+    const l1 = [1, 2, 4];
+    const l2 = [1, 3, 4];
+    const result = mergeTwoSortedLists(l1, l2);
+    expect(result).toEqual([1, 1, 2, 3, 4, 4]);
+  });
+
+  it('should handle empty lists', () => {
+    const l1 = [];
+    const l2 = [];
+    const result = mergeTwoSortedLists(l1, l2);
+    expect(result).toEqual([]);
+  });
+
+  it('should handle one empty list and one non-empty list', () => {
+    const l1 = [1, 2, 3];
+    const l2 = [];
+    const result = mergeTwoSortedLists(l1, l2);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  it('should handle one non-empty list and one empty list', () => {
+    const l1 = [];
+    const l2 = [1, 2, 3];
+    const result = mergeTwoSortedLists(l1, l2);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  it('should handle lists with different lengths', () => {
+    const l1 = [1, 3, 5, 7];
+    const l2 = [2, 4, 6, 8, 10, 12];
+    const result = mergeTwoSortedLists(l1, l2);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 10, 12]);
+  });
+
+  it('should handle large input lists for performance testing', () => {
+    const l1 = Array.from({ length: 50000 }, (_, i) => i * 2);
+    const l2 = Array.from({ length: 50000 }, (_, i) => i * 2 + 1);
+
+    const result = mergeTwoSortedLists(l1, l2);
+    const expectedArray = Array.from({ length: 100000 }, (_, i) => i);
+    expect(result).toEqual(expectedArray);
+  });
+
+  it('should handle another large input lists for performance testing', () => {
+    const l1 = Array.from({ length: 100000 }, (_, i) => i);
+    const l2 = Array.from({ length: 100000 }, (_, i) => i + 100000);
+
+    const result = mergeTwoSortedLists(l1, l2);
+    const expectedArray = Array.from({ length: 200000 }, (_, i) => i);
+    expect(result).toEqual(expectedArray);
   });
 });
