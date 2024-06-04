@@ -1,16 +1,12 @@
 function findMaximumSubarray(intArray) {
-  let maximum, contigiousSum
+  let maximum, localMax
   for (let num of intArray) {
-    if (!maximum && !contigiousSum) {
-      maximum = num
-      contigiousSum = num
+    if (!maximum && !localMax) {
+      maximum = localMax = num
       continue
     }
-    contigiousSum += num
-    if (num > contigiousSum) {
-      contigiousSum = num
-    }
-    maximum = Math.max(contigiousSum, maximum)
+    localMax = Math.max(localMax + num, num)
+    maximum = Math.max(localMax, maximum)
   }
   return maximum
 }
