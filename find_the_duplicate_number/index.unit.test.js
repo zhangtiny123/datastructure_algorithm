@@ -28,7 +28,6 @@ describe('findDuplicateNumber', () => {
   it('should handle a large input array for performance testing', () => {
     const nums = Array.from({ length: 100000 }, (_, i) => i % 100000 + 1);
     nums.push(1); // Adding a duplicate
-    console.log(nums.slice(99980, 100002))
     const result = findDuplicateNumber(nums);
     expect(result).toBe(1);
   });
@@ -37,7 +36,6 @@ describe('findDuplicateNumber', () => {
     const nums = Array.from({ length: 200000 }, (_, i) => (i % 200000) + 1);
 
     nums.push(2); // Adding a duplicate
-    console.log(nums.slice(199980, 200002))
     const result = findDuplicateNumber(nums);
     expect(result).toBe(2);
   });
